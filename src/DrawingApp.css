@@ -1,0 +1,21 @@
+.drawing-app {
+  position: relative;
+  width: 338px;
+  height: 450px;
+}
+
+.drawing-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.drawing-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 338px;
+  height: 450px;
+  background-size: cover;
+  z-index: -1;
+}
