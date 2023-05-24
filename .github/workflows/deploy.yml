@@ -2,7 +2,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # GitHub Pagesにデプロイするブランチ名を指定します。
+      - master  # GitHub Pagesにデプロイするブランチ名を指定します。
 
 jobs:
   build-and-deploy:
