@@ -1,37 +1,29 @@
 name: Build and Deploy
-
 on:
   push:
     branches:
-      - master
+      - main  # GitHub Pagesにデプロイするブランチ名を指定します。
 
 jobs:
-  build_and_deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2  # レポジトリのソースコードをチェックアウトします。
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2  # Node.jsをセットアップします。
         with:
-          node-version: '18'
+          node-version: '16'  # 必要なNode.jsのバージョンを指定します。
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install Dependencies
+        run: npm ci  # プロジェクトの依存関係をインストールします。
 
       - name: Build
-        run: npm run build
+        run: npm run build  # Viteプロジェクトをビルドします。
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3  # ビルドされたファイルをGitHub Pagesにデプロイします。
         with:
-          path: './dist'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist  # Viteのビルド出力ディレクトリを指定します。
